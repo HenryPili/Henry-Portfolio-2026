@@ -1,0 +1,408 @@
+/* ================================================================
+   HENRY PILI — EXECUTIVE VIRTUAL ASSISTANT PORTFOLIO
+   Custom Stylesheet (Tailwind CSS v3 Project)
+   ================================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ── Base Reset & Typography ── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #334155;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ── Custom Scrollbar ── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes counterPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation utility classes */
+.anim-fade-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.anim-fade-right {
+  animation: fadeInRight 0.6s ease-out both;
+}
+
+.anim-modal {
+  animation: modalIn 0.3s ease-out both;
+}
+
+
+/* ================================================================
+   SCROLL REVEAL
+   ================================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+
+
+/* ================================================================
+   CARD HOVER EFFECT
+   ================================================================ */
+
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #D97706;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #D97706;
+}
+
+
+/* ================================================================
+   MOBILE MENU
+   ================================================================ */
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+}
+
+.mobile-menu.open {
+  max-height: 480px;
+  opacity: 1;
+}
+
+
+/* ================================================================
+   MODAL OVERLAY
+   ================================================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* ================================================================
+   FORM STYLES
+   ================================================================ */
+
+.form-input:focus {
+  outline: none;
+  border-color: #D97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
+}
+
+
+/* ================================================================
+   TIMELINE
+   ================================================================ */
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, #D97706, #059669);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+  .timeline-line {
+    left: 20px;
+  }
+}
+
+
+/* ================================================================
+   PRICING CARDS
+   ================================================================ */
+
+.pricing-pop {
+  border: 2px solid #D97706;
+  position: relative;
+}
+
+.pricing-pop::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #D97706;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+/* ================================================================
+   COMPARISON TABLE
+   ================================================================ */
+
+.comparison-hl {
+  background: linear-gradient(135deg, #FEF3C7 0%, #D1FAE5 100%);
+}
+
+
+/* ================================================================
+   SECTION DIVIDER
+   ================================================================ */
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E2E8F0, transparent);
+}
+
+
+/* ================================================================
+   RESULTS SECTION — Glassmorphism Cards
+   ================================================================ */
+
+.results-hero-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(217,119,6,0.06) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.results-hero-card:hover {
+  border-color: rgba(217,119,6,0.25);
+  box-shadow: 0 0 60px rgba(217,119,6,0.08), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.results-metric-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+}
+
+.results-metric-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2), 0 0 30px rgba(217,119,6,0.05);
+}
+
+
+/* ================================================================
+   TESTIMONIAL CARDS — Hover lift & shadow
+   ================================================================ */
+
+.testimonial-card > div {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.testimonial-card:hover > div {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(15,23,42,0.10);
+}
+
+
+/* ================================================================
+   PACKAGE CARDS — Hover lift & shadow
+   ================================================================ */
+
+.package-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(15,23,42,0.12);
+}
+
+
+/* ================================================================
+   PORTFOLIO FILTER TABS
+   ================================================================ */
+
+.filter-btn {
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748B;
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.filter-btn:hover {
+  color: #D97706;
+  border-color: #D97706;
+  background: #FFFBEB;
+}
+
+.filter-btn.active {
+  color: white;
+  background: #D97706;
+  border-color: #D97706;
+}
+
+/* Portfolio item filter transitions */
+.portfolio-item {
+  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.5s ease;
+}
+
+.portfolio-item.hidden-item {
+  opacity: 0;
+  transform: scale(0.95);
+  position: absolute;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+
