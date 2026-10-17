@@ -581,14 +581,6 @@ video {
   inset: 0px;
 }
 
-.-bottom-4 {
-  bottom: -1rem;
-}
-
-.-left-4 {
-  left: -1rem;
-}
-
 .-right-12 {
   right: -3rem;
 }
@@ -635,10 +627,6 @@ video {
 
 .right-1\/4 {
   right: 25%;
-}
-
-.right-3 {
-  right: 0.75rem;
 }
 
 .right-6 {
@@ -1191,6 +1179,10 @@ video {
   gap: 0.75rem;
 }
 
+.gap-3\.5 {
+  gap: 0.875rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -1436,10 +1428,6 @@ video {
   background-color: rgb(5 150 105 / 0.05);
 }
 
-.bg-emerald\/90 {
-  background-color: rgb(5 150 105 / 0.9);
-}
-
 .bg-emerald\/\[0\.04\] {
   background-color: rgb(5 150 105 / 0.04);
 }
@@ -1625,10 +1613,6 @@ video {
 .object-top {
   -o-object-position: top;
      object-position: top;
-}
-
-.p-2 {
-  padding: 0.5rem;
 }
 
 .p-3 {
@@ -2792,12 +2776,6 @@ body {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.group:hover .group-hover\:scale-\[1\.04\] {
-  --tw-scale-x: 1.04;
-  --tw-scale-y: 1.04;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .group:hover .group-hover\:scale-\[1\.06\] {
   --tw-scale-x: 1.06;
   --tw-scale-y: 1.06;
@@ -3112,10 +3090,6 @@ body {
 
   .xl\:gap-24 {
     gap: 6rem;
-  }
-
-  .xl\:gap-6 {
-    gap: 1.5rem;
   }
 
   .xl\:text-\[3\.6rem\] {
