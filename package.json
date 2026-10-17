@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tailwindcss -i ./style.css -o ./output.css && vite build",
     "preview": "vite preview",
     "build:css": "tailwindcss -i ./style.css -o ./output.css --watch"
   },

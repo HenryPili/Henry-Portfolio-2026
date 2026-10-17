@@ -3,8 +3,10 @@
    Main JavaScript Module
    ================================================================ */
 
+// Mark JS as enabled for CSS animation fail-safe
+document.documentElement.classList.add('js-enabled');
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
   initNavbar();
   initMobileMenu();
   initScrollReveal();
@@ -14,7 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initActiveNavHighlight();
   initPortfolioFilter();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
+}
 
 
 /* ================================================================
@@ -85,21 +93,37 @@ function initMobileMenu() {
    ================================================================ */
 
 function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.08,
-      rootMargin: '0px 0px -30px 0px'
+      threshold: 0.05,
+      rootMargin: '0px 0px -20px 0px'
     }
   );
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  reveals.forEach(el => {
+    // If element is already in the viewport upon load (e.g. direct anchor #about), reveal it immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('visible');
+    }
+    observer.observe(el);
+  });
 }
 
 
@@ -424,3 +448,15 @@ function initPortfolioFilter() {
     });
   });
 }
+
+
+/* ================================================================
+   GLOBAL WINDOW BINDINGS — For inline HTML onclick attributes
+   ================================================================ */
+
+window.openLightbox  = openLightbox;
+window.closeLightbox = closeLightbox;
+window.openModal     = openModal;
+window.closeM        = closeM;
+window.closeMBg      = closeMBg;
+window.switchCS      = switchCS;
