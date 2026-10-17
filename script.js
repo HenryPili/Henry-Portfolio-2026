@@ -38,12 +38,21 @@ function initNavbar() {
   function update() {
     const scrolled = window.scrollY > 60;
 
-    // Background
-    navbar.classList.toggle('bg-white/95', scrolled);
-    navbar.classList.toggle('backdrop-blur-md', scrolled);
-    navbar.classList.toggle('shadow-sm', scrolled);
-    navbar.classList.toggle('border-b', scrolled);
-    navbar.classList.toggle('border-slate-100', scrolled);
+    // Background & scrolled class
+    navbar.classList.toggle('scrolled', scrolled);
+    if (scrolled) {
+      navbar.style.background = 'rgba(255,255,255,0.98)';
+      navbar.style.backdropFilter = 'blur(16px)';
+      navbar.style.webkitBackdropFilter = 'blur(16px)';
+      navbar.style.boxShadow = '0 4px 24px -2px rgba(15,23,42,0.08)';
+      navbar.style.borderBottom = '1px solid #E2E8F0';
+    } else {
+      navbar.style.background = '';
+      navbar.style.backdropFilter = '';
+      navbar.style.webkitBackdropFilter = '';
+      navbar.style.boxShadow = '';
+      navbar.style.borderBottom = '';
+    }
 
     // Logo text color
     logoText.classList.toggle('text-white', !scrolled);
